@@ -1,0 +1,11 @@
+fundiki-mobile/node_modules/
+fundiki-mobile/.expo/
+fundiki-mobile/android/.gradle/
+fundiki-mobile/android/app/build/
+fundiki-mobile/android/build/
+fundiki-mobile/.DS_Store
+fundiki-mobile/npm-debug.log*
+fundiki-mobile/yarn-debug.log*
+fundiki-mobile/yarn-error.log*
+fundiki-backend/node_modules/
+fundiki-backend/.env

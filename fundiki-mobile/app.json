@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "Fundiki",
+    "slug": "fundiki-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.fundiki.mobile"
+    },
+    "ios": {
+      "bundleIdentifier": "com.fundiki.mobile"
+    }
+  }
+}
