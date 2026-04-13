@@ -1,12 +1,18 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Booking } from '../types/booking';
 import { getBookingStatusColor, getBookingStatusLabel } from '../services/bookingService';
 
 type Props = {
   bookings: Booking[];
+  onCancelBooking: (bookingId: string) => void;
+  onCompleteBooking: (bookingId: string) => void;
 };
 
-export default function PastBookings({ bookings }: Props) {
+export default function ActiveBookings({
+  bookings,
+  onCancelBooking,
+  onCompleteBooking
+}: Props) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {bookings.map((booking) => (
@@ -34,6 +40,22 @@ export default function PastBookings({ bookings }: Props) {
             >
               {getBookingStatusLabel(booking.status)}
             </Text>
+
+            <View style={styles.actions}>
+              <TouchableOpacity
+                style={[styles.actionButton, styles.completeButton]}
+                onPress={() => onCompleteBooking(booking.id)}
+              >
+                <Text style={styles.actionButtonText}>Complete Stay</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.actionButton, styles.cancelButton]}
+                onPress={() => onCancelBooking(booking.id)}
+              >
+                <Text style={styles.actionButtonText}>Cancel Booking</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       ))}
@@ -79,5 +101,27 @@ const styles = StyleSheet.create({
   status: {
     marginTop: 8,
     fontWeight: 'bold'
+  },
+  actions: {
+    flexDirection: 'row',
+    marginTop: 12,
+    gap: 10
+  },
+  actionButton: {
+    flex: 1,
+    paddingVertical: 10,
+    borderRadius: 8,
+    alignItems: 'center'
+  },
+  completeButton: {
+    backgroundColor: '#1f4ba5'
+  },
+  cancelButton: {
+    backgroundColor: '#d32f2f'
+  },
+  actionButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 13
   }
 });

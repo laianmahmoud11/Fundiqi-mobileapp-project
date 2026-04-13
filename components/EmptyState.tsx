@@ -1,6 +1,20 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default function EmptyState() {
+type Props = {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  onPressButton?: () => void;
+  hideButton?: boolean;
+};
+
+export default function EmptyState({
+  title = 'No bookings yet',
+  subtitle = 'Sign in or create an account to get started.',
+  buttonText = 'Sign in',
+  onPressButton,
+  hideButton = false
+}: Props) {
   return (
     <View style={styles.container}>
       <Image
@@ -8,15 +22,14 @@ export default function EmptyState() {
         style={styles.image}
       />
 
-      <Text style={styles.title}>No bookings yet</Text>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
 
-      <Text style={styles.subtitle}>
-        Sign in or create an account to get started.
-      </Text>
-
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Sign in</Text>
-      </TouchableOpacity>
+      {!hideButton && (
+        <TouchableOpacity style={styles.button} onPress={onPressButton}>
+          <Text style={styles.buttonText}>{buttonText}</Text>
+        </TouchableOpacity>
+      )}
 
       <Text style={styles.link}>Import booking</Text>
     </View>
@@ -27,7 +40,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingHorizontal: 24
   },
   image: {
     width: 150,
