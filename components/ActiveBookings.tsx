@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { Booking } from '../types/booking';
-import { getBookingStatusColor, getBookingStatusLabel } from '../services/bookingService';
+import { getBookingStatusColor, getBookingStatusLabel } from '../services/mybookingService';
 
 type Props = {
   bookings: Booking[];

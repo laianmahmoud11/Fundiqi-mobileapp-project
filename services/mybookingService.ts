@@ -4,7 +4,7 @@ import {
   createBookingInFirebase,
   cancelBookingInFirebase,
   completeBookingInFirebase
-} from './firebase/firebaseBookingSource';
+} from './firebase/firebasemyBookingSource';
 
 export async function getUserBookings(userId: string): Promise<Booking[]> {
   return getUserBookingsFromFirebase(userId);

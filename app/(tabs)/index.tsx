@@ -14,7 +14,7 @@ import {
   getPastBookings,
   cancelBooking,
   completeBooking
-} from '../../services/bookingService';
+} from '../../services/mybookingService';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'active' | 'past'>('active');
