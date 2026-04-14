@@ -1,6 +1,3 @@
-import { initializeApp, getApps } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-
 const firebaseConfig = {
   apiKey: 'AIzaSyD3AUCx-EFiu1m2IyHGwgg2knqJL-Sxqb8',
   authDomain: 'fundiki-app.firebaseapp.com',
@@ -18,13 +15,5 @@ function hasValidFirebaseConfig() {
   );
 }
 
-const firebaseApp = hasValidFirebaseConfig()
-  ? getApps().length > 0
-    ? getApps()[0]
-    : initializeApp(firebaseConfig)
-  : null;
-
-const db = firebaseApp ? getFirestore(firebaseApp) : null;
-
-export { db, hasValidFirebaseConfig };
+export { firebaseConfig, hasValidFirebaseConfig };
 export const hotelsCollectionName = 'hotels';

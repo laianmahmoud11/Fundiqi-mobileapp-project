@@ -70,11 +70,20 @@ export const styles = StyleSheet.create({
   searchCard: {
     backgroundColor: colors.surface,
     borderColor: colors.accent,
-    borderRadius: 6,
+    borderRadius: 999,
     borderWidth: 3,
     marginHorizontal: 16,
-    marginTop: 18,
+    marginTop: 38,
     overflow: 'hidden',
+  },
+  searchRow: {
+    alignItems: 'stretch',
+    flexDirection: 'row',
+  },
+  searchField: {
+    flex: 1,
+    paddingHorizontal: 18,
+    paddingVertical: 12,
   },
   field: {
     borderBottomColor: colors.accent,
@@ -109,6 +118,25 @@ export const styles = StyleSheet.create({
     color: colors.surface,
     fontFamily: 'Poppins_700Bold',
     fontSize: 18,
+  },
+  searchButtonInline: {
+    alignItems: 'center',
+    backgroundColor: colors.tertiary,
+    borderBottomRightRadius: 999,
+    borderTopRightRadius: 999,
+    justifyContent: 'center',
+    minWidth: 78,
+  },
+  searchButtonInlineText: {
+    color: colors.surface,
+    fontFamily: 'Poppins_700Bold',
+    fontSize: 16,
+    marginTop: -2,
+  },
+  searchIcon: {
+    color: colors.surface,
+    fontFamily: 'Poppins_700Bold',
+    fontSize: 30,
   },
   sectionHeader: {
     marginBottom: 14,

@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { db, hasValidFirebaseConfig, hotelsCollectionName } from '../config/firebase';
+import {
+  firebaseConfig,
+  hasValidFirebaseConfig,
+  hotelsCollectionName,
+} from '../config/firebase';
 import { mockHotels } from '../data/mockHotels';
 
 function normalizeHotel(hotel, index) {
@@ -22,7 +26,7 @@ function normalizeHotel(hotel, index) {
 }
 
 function hotelMatchesSearch(hotel, filters) {
-  const { destination, rooms, adults } = filters;
+  const { destination } = filters;
   const destinationText = destination ? destination.trim().toLowerCase() : '';
 
   const matchesDestination =
@@ -30,14 +34,11 @@ function hotelMatchesSearch(hotel, filters) {
     hotel.city.toLowerCase().includes(destinationText) ||
     hotel.name.toLowerCase().includes(destinationText);
 
-  const matchesRooms = !rooms || hotel.rooms >= rooms;
-  const matchesAdults = !adults || hotel.adultsCapacity >= adults;
-
-  return matchesDestination && matchesRooms && matchesAdults;
+  return matchesDestination;
 }
 
 async function getHotelsFromFirebase() {
-  const projectId = db.app.options.projectId;
+  const projectId = firebaseConfig.projectId;
   const firestoreUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/${hotelsCollectionName}`;
   const response = await axios.get(firestoreUrl);
   const documents = response.data.documents || [];
@@ -68,7 +69,7 @@ async function getHotelsFromFirebase() {
 }
 
 async function getHotels() {
-  if (hasValidFirebaseConfig() && db) {
+  if (hasValidFirebaseConfig()) {
     try {
       const firebaseHotels = await getHotelsFromFirebase();
 
